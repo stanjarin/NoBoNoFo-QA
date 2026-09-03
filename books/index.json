@@ -1,0 +1,74 @@
+[
+  {
+    "id": "bloomfield",
+    "title": "Guitar King",
+    "author": "David Dann",
+    "file": "books/bloomfield.json",
+    "chapters": 26,
+    "pages": 1807
+  },
+  {
+    "id": "farewell",
+    "title": "A Farewell to Arms",
+    "author": "Ernest Hemingway",
+    "file": "books/farewell.json",
+    "chapters": 41,
+    "pages": 522
+  },
+  {
+    "id": "h2g2",
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "author": "Douglas Adams",
+    "file": "books/h2g2.json",
+    "chapters": 35,
+    "pages": 281
+  },
+  {
+    "id": "hst",
+    "title": "Fear and Loathing in Las Vegas",
+    "author": "Hunter S. Thompson",
+    "file": "books/hst.json",
+    "chapters": 12,
+    "pages": 143
+  },
+  {
+    "id": "huck",
+    "title": "Adventures of Huckleberry Finn",
+    "author": "Mark Twain",
+    "file": "books/huck.json",
+    "chapters": 43,
+    "pages": 683
+  },
+  {
+    "id": "jeeves",
+    "title": "Right Ho, Jeeves",
+    "author": "P. G. Wodehouse",
+    "file": "books/jeeves.json",
+    "chapters": 23,
+    "pages": 451
+  },
+  {
+    "id": "jobs",
+    "title": "Steve Jobs",
+    "author": "Walter Isaacson",
+    "file": "books/jobs.json",
+    "chapters": 41,
+    "pages": 1432
+  },
+  {
+    "id": "keef",
+    "title": "Life",
+    "author": "Keith Richards",
+    "file": "books/keef.json",
+    "chapters": 13,
+    "pages": 1245
+  },
+  {
+    "id": "sotweed",
+    "title": "The Sot-Weed Factor",
+    "author": "John Barth",
+    "file": "books/sotweed.json",
+    "chapters": 66,
+    "pages": 2075
+  }
+]

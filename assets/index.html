@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#f4f0e7">
+<link rel="manifest" href="manifest.webmanifest">
+<title>NoBo NoFo — Nine Book Reader</title>
+<style>
+*{box-sizing:border-box} html,body{margin:0;height:100%;background:#f4f0e7;color:#171717;font-family:Georgia,"Times New Roman",serif}
+button,input,textarea{font:inherit} button{cursor:pointer}
+#app{height:100%;overflow:hidden}
+.top{height:54px;padding:8px 10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #bbb;background:#f8f5ee}
+.top .title{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px}
+.top button,.editorbar button,.importLabel{border:1px solid #999;background:#fff;padding:7px 9px;border-radius:7px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px}
+.library{height:calc(100% - 54px);overflow:auto;padding:18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-content:start}
+.book{min-height:145px;border:1px solid #aaa;background:#fff;padding:13px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 6px #0002}
+.book h2{font-size:18px;margin:0 0 8px}.book p{font-size:12px;margin:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#555}
+.contents{height:calc(100% - 54px);overflow:auto;padding:18px;max-width:700px;margin:auto}
+.contents h1{font-size:25px}.chapter{width:100%;text-align:left;border:0;border-bottom:1px solid #ccc;background:transparent;padding:13px 4px;font-size:16px}
+.reader{height:calc(100% - 54px);position:relative;overflow:hidden}
+.page{height:100%;max-width:640px;margin:auto;padding:34px 30px 54px;overflow:auto;background:#fff;box-shadow:0 0 20px #0001}
+.page h1{font-size:20px;text-align:center;margin:0 0 32px}.page p{font-size:17px;line-height:1.48;text-align:justify;margin:0 0 .75em}.page p+p{text-indent:1.2em}
+.pageno{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:12px;color:#666;pointer-events:none}
+.hit{position:absolute;top:0;bottom:0;width:22%;z-index:3}.hit.left{left:0}.hit.right{right:0}
+.editorbar{position:absolute;left:8px;right:8px;bottom:8px;z-index:8;display:flex;gap:6px;align-items:center;background:#eeeef5e8;padding:7px;border:1px solid #999;border-radius:9px;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+.editorbar .spacer{flex:1}.dirty{font-size:11px}
+.editor{position:absolute;inset:54px 0 0;background:#eee;z-index:10;padding:12px;display:flex;flex-direction:column;gap:8px}
+.editor textarea{flex:1;width:100%;resize:none;padding:14px;font:16px/1.45 Georgia,serif}
+.editor input{padding:8px}.editor .row{display:flex;gap:7px;align-items:center}.editor .row button{padding:8px}
+.hidden{display:none!important}
+#fileInput{display:none}
+@media(max-width:650px){.library{gap:8px;padding:10px}.book{min-height:125px;padding:9px}.book h2{font-size:14px}.page{padding:28px 22px 58px}.page p{font-size:16px}}
+
+.searchOverlay{position:fixed;inset:0;background:#f6f2e9;z-index:40;padding:18px;color:#222}
+.searchOverlay .searchbar{display:flex;gap:8px;margin:12px 0}
+.searchOverlay input{flex:1;font-size:18px;padding:11px;border:1px solid #aaa;border-radius:8px;background:white}
+.searchOverlay .result{display:block;width:100%;text-align:left;padding:15px 4px;border:0;border-bottom:1px solid #ccc;background:none}
+.searchOverlay .result b{display:block;font-size:17px}.searchOverlay .result small{display:block;margin-top:5px;color:#666}
+</style>
+</head>
+<body><div id="app"></div>
+<script>
+const $=s=>document.querySelector(s);
+const state={screen:"library",meta:[],book:null,ci:0,pi:0,edit:false,dirty:new Set()};
+const cache=new Map();
+const clone=o=>JSON.parse(JSON.stringify(o));
+const key=id=>"nobonofo-edits-"+id;
+
+const MAGICKEY="nobonofo-magic-pass43b";
+if(sessionStorage.getItem(MAGICKEY)===null){
+  sessionStorage.setItem(MAGICKEY,JSON.stringify({phase:"READY",force:"",paid:null,dwell:null}));
+}
+const magic=Object.assign({phase:"READY",force:"",paid:null,dwell:null},JSON.parse(sessionStorage.getItem(MAGICKEY)||"{}"));
+function saveMagic(){sessionStorage.setItem(MAGICKEY,JSON.stringify(magic))}
+function resetMagic(){Object.assign(magic,{phase:"READY",force:"",paid:null,dwell:null});saveMagic();goLibrary()}
+function cleanMagic(){if(magic.phase==="PAID"){magic.phase="CLEAN";magic.force="";saveMagic();render()}}
+function armMagic(word){
+  word=String(word||"").trim();
+  if(!word)return;
+  magic.phase="ARMED";magic.force=word;magic.paid=null;magic.dwell=null;saveMagic();
+}
+function pageKey(){return state.book?`${state.book.id}:${state.ci}:${state.pi}`:""}
+function firstSentenceInject(text,word){
+  if(!word)return text;
+  if(text.includes("$$$"))return text.replaceAll("$$$",word);
+  // Corpus currently has no prepared sockets. Pass 4 therefore leaves genuine prose untouched
+  // unless a $$$ socket is deliberately present; no destructive automatic word replacement.
+  return text;
+}
+function visibleParagraphs(p){
+  const k=pageKey(),forceHere=magic.phase==="ARMED" || (magic.phase==="PAID"&&magic.paid===k);
+  // Prepared force text is separate from the genuine page. This lets PAID/CLEAN
+  // restore the real book everywhere except the exact payoff page.
+  const paras=(forceHere && p.force_paragraphs) ? p.force_paragraphs : p.paragraphs;
+  return paras.map(x=>forceHere?firstSentenceInject(x,magic.force):x);
+}
+function beginDwell(){
+  clearTimeout(magic._timer);
+  if(magic.phase!=="ARMED")return;
+  const k=pageKey();
+  magic.dwell={key:k,qualified:false};
+  magic._timer=setTimeout(()=>{
+    if(magic.phase==="ARMED"&&pageKey()===k&&magic.dwell?.key===k){
+      magic.dwell.qualified=true; saveMagic();
+    }
+  },2200);
+}
+function maybeAutoPaid(departingKey){
+  if(magic.phase==="ARMED"&&magic.dwell?.qualified&&magic.dwell.key===departingKey){
+    magic.phase="PAID";magic.paid=departingKey;magic.dwell=null;saveMagic();
+  }
+}
+
+async function init(){
+  state.meta=await (await fetch("books/index.json",{cache:"no-store"})).json();
+  render();
+}
+async function loadBook(id){
+  if(cache.has(id)) return cache.get(id);
+  const m=state.meta.find(x=>x.id===id);
+  let b=await (await fetch(m.file,{cache:"no-store"})).json();
+  const saved=localStorage.getItem(key(id));
+  if(saved){ try{ b=JSON.parse(saved); }catch(e){} }
+  cache.set(id,b); return b;
+}
+function saveLocal(){
+  if(!state.book)return;
+  localStorage.setItem(key(state.book.id),JSON.stringify(state.book));
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function currentPage(){return state.book.chapters[state.ci].pages[state.pi]}
+function totalBookPages(){return state.book.chapters.reduce((n,c)=>n+c.pages.length,0)}
+function absolutePage(){
+  let n=1; for(let i=0;i<state.ci;i++)n+=state.book.chapters[i].pages.length; return n+state.pi;
+}
+function goLibrary(){state.screen="library";state.book=null;state.edit=false;render()}
+async function openBook(id){state.book=await loadBook(id);state.screen="contents";state.ci=0;state.pi=0;render()}
+function openChapter(i){state.ci=i;state.pi=0;state.screen="reader";render()}
+function pageMove(d){
+  const departing=pageKey();
+  let ci=state.ci,pi=state.pi+d;
+  if(pi<0){if(ci===0)return;ci--;pi=state.book.chapters[ci].pages.length-1}
+  if(pi>=state.book.chapters[ci].pages.length){if(ci===state.book.chapters.length-1)return;ci++;pi=0}
+  maybeAutoPaid(departing);
+  state.ci=ci;state.pi=pi;render();
+}
+
+function openH2G2Search(){
+  if(!state.book || state.book.id!=="h2g2" || magic.phase!=="READY")return;
+  const app=$("#app"),ov=document.createElement("div");ov.className="searchOverlay";
+  ov.innerHTML=`<div class="top"><button id="sx">CANCEL</button><div class="title"><b>Search</b></div></div>
+    <form id="searchForm" class="searchbar">
+      <input id="secretSearch" autocomplete="off" autocapitalize="none" spellcheck="false"
+             enterkeyhint="search" placeholder="Search this book">
+    </form>
+    <div id="results"></div>`;
+  app.appendChild(ov);
+  const inp=$("#secretSearch"),res=$("#results");
+
+  function submit(){
+    const w=inp.value.trim();
+    if(!w || w.toLowerCase()==="improbability")return;
+    armMagic(w);
+    // ONE state change: the same Search/Done action that commits the covert word
+    // transforms the visible field and produces the innocent results.
+    inp.value="improbability";
+    inp.blur();
+    res.innerHTML=`<button class="result" id="improbResult"><b>Infinite Improbability Drive</b><small>Chapter 10 · “…the principle of generating finite amounts of improbability…”</small></button>
+      <button class="result"><b>improbability</b><small>More matches in this book</small></button>`;
+    $("#improbResult").onclick=()=>{
+      ov.remove();
+      state.ci=Math.min(9,state.book.chapters.length-1);
+      state.pi=0;state.screen="reader";render();
+    };
+  }
+
+  $("#searchForm").addEventListener("submit",e=>{e.preventDefault();submit()});
+  $("#sx").onclick=()=>ov.remove();
+  inp.focus();
+}
+function render(){
+  const app=$("#app");
+  if(state.screen==="library"){
+    app.innerHTML=`<div class="top"><div class="title"><b>Library</b> — Pass 4.3B reader · <small>STATE: ${esc(magic.phase)}</small></div>
+      <button id="resetTest">RESET TEST</button>
+      <label class="importLabel">IMPORT<input id="fileInput" type="file" accept=".json"></label></div>
+      <div class="library">${state.meta.map(m=>`<button class="book" data-id="${m.id}"><div><h2>${esc(m.title)}</h2><p>${esc(m.author)}</p></div><p>${m.chapters} sections · ${m.pages} pages</p></button>`).join("")}</div>`;
+    document.querySelectorAll(".book").forEach(b=>b.onclick=()=>openBook(b.dataset.id));
+    $("#fileInput").onchange=importBook;
+    $("#resetTest").onclick=()=>resetMagic();
+    return;
+  }
+  if(state.screen==="contents"){
+    app.innerHTML=`<div class="top"><button id="back">LIBRARY</button><div class="title"><b>${esc(state.book.title)}</b> — ${esc(state.book.author)}</div>${state.book.id==="h2g2"&&magic.phase==="READY"?'<button id="searchBook">SEARCH</button>':'<button id="export">EXPORT</button>'}</div>
+      <div class="contents"><h1>Contents</h1>${state.book.chapters.map((c,i)=>`<button class="chapter" data-i="${i}">${esc(c.title)} <small>(${c.pages.length} pages)</small></button>`).join("")}</div>`;
+    $("#back").onclick=goLibrary;
+    if($("#export"))$("#export").onclick=exportBook;
+    if($("#searchBook"))$("#searchBook").onclick=openH2G2Search;
+    document.querySelectorAll(".chapter").forEach(b=>b.onclick=()=>openChapter(+b.dataset.i));
+    return;
+  }
+  const p=currentPage(),ch=state.book.chapters[state.ci];
+  app.innerHTML=`<div class="top"><button id="contents">CONTENTS</button><div class="title">${esc(state.book.title)} · ${esc(ch.title)}</div><button id="edit">EDIT</button></div>
+    <div class="reader"><div class="page">${p.opener?`<h1>${esc(ch.title)}</h1>`:""}${visibleParagraphs(p).map(x=>`<p>${esc(x)}</p>`).join("")}</div>
+    <div class="hit left" id="left"></div><div class="hit right" id="right"></div>
+    <div class="pageno">${absolutePage()} / ${totalBookPages()}</div></div>`;
+  $("#contents").onclick=()=>{state.screen="contents";render()};
+  $("#left").onclick=()=>pageMove(-1);$("#right").onclick=()=>pageMove(1);
+
+  // iPhone horizontal flick navigation.
+  const reader=document.querySelector(".reader");
+  let touchX=null,touchY=null;
+  reader.addEventListener("touchstart",e=>{
+    if(e.touches.length!==1)return;
+    touchX=e.touches[0].clientX; touchY=e.touches[0].clientY;
+  },{passive:true});
+  reader.addEventListener("touchend",e=>{
+    if(touchX===null || !e.changedTouches.length)return;
+    const dx=e.changedTouches[0].clientX-touchX;
+    const dy=e.changedTouches[0].clientY-touchY;
+    touchX=touchY=null;
+    if(Math.abs(dx)>=45 && Math.abs(dx)>Math.abs(dy)*1.25){
+      pageMove(dx<0 ? 1 : -1);
+    }
+  },{passive:true});
+
+  $("#edit").onclick=openEditor;
+
+  // Hidden PAID -> CLEAN purge: deliberate 1.2 s long-press on page number.
+  // No visible feedback; ordinary taps/swipes do nothing.
+  const pageNo=document.querySelector(".pageno");
+  let cleanTimer=null, cleanFired=false;
+  const cancelClean=()=>{if(cleanTimer){clearTimeout(cleanTimer);cleanTimer=null;}};
+  pageNo.addEventListener("touchstart",e=>{
+    if(magic.phase!=="PAID" || e.touches.length!==1)return;
+    cleanFired=false;
+    cleanTimer=setTimeout(()=>{
+      cleanTimer=null; cleanFired=true; cleanMagic();
+    },1200);
+  },{passive:true});
+  pageNo.addEventListener("touchmove",cancelClean,{passive:true});
+  pageNo.addEventListener("touchend",cancelClean,{passive:true});
+  pageNo.addEventListener("touchcancel",cancelClean,{passive:true});
+
+  beginDwell();
+}
+function openEditor(){
+  const p=currentPage(),ch=state.book.chapters[state.ci],app=$("#app");
+  const overlay=document.createElement("div");overlay.className="editor";
+  overlay.innerHTML=`<div class="row"><b>EDITORIAL MODE</b><span class="dirty">${state.dirty.has(state.ci)?"chapter changed":""}</span><span style="flex:1"></span><button id="cancelEdit">CLOSE</button></div>
+    <label>Chapter heading <input id="heading" value="${esc(ch.title)}"></label>
+    <textarea id="pageText">${esc(p.paragraphs.join("\n\n"))}</textarea>
+    <div class="row"><button id="saveEdit">SAVE PAGE</button><button id="repag">REPAGINATE CHAPTER</button><span style="flex:1"></span><button id="exportEdit">EXPORT BOOK</button></div>`;
+  app.appendChild(overlay);
+  $("#cancelEdit").onclick=()=>overlay.remove();
+  $("#saveEdit").onclick=()=>saveEdit(false);
+  $("#repag").onclick=()=>saveEdit(true);
+  $("#exportEdit").onclick=exportBook;
+}
+function saveEdit(repaginate){
+  const ch=state.book.chapters[state.ci],p=currentPage();
+  ch.title=$("#heading").value.trim()||ch.title;
+  p.paragraphs=$("#pageText").value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);
+  p.word_count=p.paragraphs.join(" ").trim().split(/\s+/).filter(Boolean).length;
+  state.dirty.add(state.ci);
+  if(repaginate) repaginateChapter(state.ci);
+  saveLocal();render();
+}
+function repaginateChapter(ci){
+  const ch=state.book.chapters[ci];
+  const paragraphs=ch.pages.flatMap(p=>p.paragraphs);
+  const opener=state.book.geometry?.chapter_opener_target_words||145;
+  const follower=state.book.geometry?.follower_target_words||195;
+  const pages=[];let cur=[],wc=0,budget=opener;
+  function push(){if(!cur.length)return;pages.push({page_in_chapter:pages.length+1,opener:pages.length===0,paragraphs:cur,word_count:wc,chapter_index:ci+1,chapter_title:ch.title});cur=[];wc=0;budget=follower}
+  for(const para of paragraphs){
+    const words=para.split(/\s+/).filter(Boolean);
+    if(cur.length && wc+words.length>budget)push();
+    if(words.length>budget && !cur.length){
+      let rest=[...words];
+      while(rest.length>budget){cur=[""+rest.splice(0,budget).join(" ")];wc=budget;push()}
+      if(rest.length){cur=[rest.join(" ")];wc=rest.length}
+    }else{cur.push(para);wc+=words.length}
+  }
+  push();ch.pages=pages;state.pi=Math.min(state.pi,pages.length-1);
+}
+function exportBook(){
+  if(!state.book)return;
+  saveLocal();
+  const blob=new Blob([JSON.stringify(state.book,null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download=`${state.book.id}_EDITED.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+async function importBook(ev){
+  const f=ev.target.files[0];if(!f)return;
+  try{
+    const b=JSON.parse(await f.text());
+    if(!b.id||!Array.isArray(b.chapters))throw new Error("Not a NoBo book JSON");
+    localStorage.setItem(key(b.id),JSON.stringify(b));cache.set(b.id,b);
+    alert(`Imported ${b.title||b.id}`);
+  }catch(e){alert("Import failed: "+e.message)}
+  ev.target.value="";
+}
+document.addEventListener("keydown",e=>{
+  if(document.querySelector(".editor"))return;
+  if(state.screen==="reader"){if(e.key==="ArrowLeft")pageMove(-1);if(e.key==="ArrowRight")pageMove(1)}
+})
+init().catch(e=>document.body.innerHTML="<pre>"+esc(e.stack||e)+"</pre>");
+</script></body></html>
