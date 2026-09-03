@@ -2,7 +2,7 @@
   "id": "h2g2",
   "title": "The Hitchhiker's Guide to the Galaxy",
   "author": "Douglas Adams",
-  "pagination_version": "CLEAN-CUT-PAGINATED-v2",
+  "pagination_version": "CLEAN-CUT-PAGINATED-v3",
   "geometry": {
     "chapter_opener_target_words": 145,
     "follower_target_words": 195,
@@ -16,7 +16,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "T he house stood on a slight rise just on the edge of the village. It stood on its own and looked out over a broad spread of West Country farmland. Not a remarkable house by any means—it was about thirty years old, squattish, squarish, made of brick, and had four windows set in the front of a size and proportion which more or less exactly failed to please the eye."
+            "The house stood on a slight rise just on the edge of the village. It stood on its own and looked out over a broad spread of West Country farmland. Not a remarkable house by any means—it was about thirty years old, squattish, squarish, made of brick, and had four windows set in the front of a size and proportion which more or less exactly failed to please the eye."
           ],
           "word_count": 71,
           "chapter_index": 1,
@@ -398,7 +398,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "H ere’s what the Encyclopedia Galáctica has to say about alcohol. It says that alcohol is a colorless volatile liquid formed by the fermentation of sugars and also notes its intoxicating effect on certain carbon-based life forms.",
+            "Here’s what the Encyclopedia Galáctica has to say about alcohol. It says that alcohol is a colorless volatile liquid formed by the fermentation of sugars and also notes its intoxicating effect on certain carbon-based life forms.",
             "also mentions alcohol. It says that the best drink in existence is the Pan Galactic Gargle Blaster.",
             "It says that the effect of drinking a Pan Galactic Gargle Blaster is like having your brains smashed out by a slice of lemon wrapped round a large gold brick.",
             "The Guide also tells you on which planets the best Pan Galactic Gargle Blasters are mixed, how much you can expect to pay for one and what voluntary organizations exist to help you rehabilitate afterward.",
@@ -512,7 +512,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "O n this particular Thursday, something was moving quietly through the ionosphere many miles above the surface of the planet; several somethings in fact, several dozen huge yellow chunky slablike somethings, huge as office blocks, silent as birds. They soared with ease, basking in electromagnetic rays from the star Sol, biding their time, grouping, preparing.",
+            "On this particular Thursday, something was moving quietly through the ionosphere many miles above the surface of the planet; several somethings in fact, several dozen huge yellow chunky slablike somethings, huge as office blocks, silent as birds. They soared with ease, basking in electromagnetic rays from the star Sol, biding their time, grouping, preparing.",
             "The planet beneath them was almost perfectly oblivious of their presence, which was just how they wanted it for the moment. The huge yellow something went unnoticed at Goon-hilly, they passed over Cape Canaveral without a blip, Woomera and Jodrell Bank looked straight through them, which was a pity because it was exactly the sort of thing they’d been looking for all these years."
           ],
           "word_count": 119,
@@ -747,7 +747,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "F ar away on the opposite spiral arm of the Galaxy, five hundred thousand light-years from the star Sol, Zaphod Beeblebrox, President of the Imperial Galactic Government, sped across the seas of Damogran; his ion drive delta boat winking and flashing in the Damogran sun.",
+            "Far away on the opposite spiral arm of the Galaxy, five hundred thousand light-years from the star Sol, Zaphod Beeblebrox, President of the Imperial Galactic Government, sped across the seas of Damogran; his ion drive delta boat winking and flashing in the Damogran sun.",
             "Damogran the hot; Damogran the remote; Damogran the almost totally unheard of.",
             "Damogran, secret home of the Heart of Gold.",
             "The boat sped on across the water. It would be some time before it reached its destination because Damogran is such an inconveniently arranged planet. It consists of nothing but middling to large desert islands separated by very pretty but annoyingly wide stretches of ocean.",
@@ -947,7 +947,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "P rostetnic Vogon Jeltz was not a pleasant sight, even for other Vogons. His highly domed nose rose high above a small piggy forehead. His dark green rubbery skin was thick enough for him to play the game of Vogon Civil Service politics, and play it well, and waterproof enough for him to survive indefinitely at sea depths of down to a thousand feet with no ill effects.",
+            "Prostetnic Vogon Jeltz was not a pleasant sight, even for other Vogons. His highly domed nose rose high above a small piggy forehead. His dark green rubbery skin was thick enough for him to play the game of Vogon Civil Service politics, and play it well, and waterproof enough for him to survive indefinitely at sea depths of down to a thousand feet with no ill effects.",
             "Not that he ever went swimming of course. His busy schedule would not allow it. He was the way he was because billions of years ago when the Vogons had first crawled out of the sluggish primeval seas of Vogsphere, and had lain panting and heaving on the planet’s virgin shores … when the first rays of the bright young Vogsol sun had shone across them that morning, it was as if the forces of evolution had simply given up on them there and then, had turned aside in disgust and written them off as an ugly and unfortunate mistake. They never evolved again: they should never have survived."
           ],
           "word_count": 177,
@@ -1220,7 +1220,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "H owl howl gargle howl gargle howl howl howl gargle howl gargle howl howl gargle gargle howl gargle gargle gargle howl slurrp uuuurgh should have a good time. Message repeats. This is your captain speaking, so stop whatever you’re doing and pay attention. First of all I see from our instruments that we have a couple of hitchhikers aboard. Hello, wherever you are. I just want to make it totally clear that you are not at all welcome. I worked hard to get where I am today, and I didn’t become captain of a Vogon constructor ship simply so I could turn it into a taxi service for a load of degenerate freeloaders. I have sent out a search party, and as soon as they find you I will put you off the ship. If you’re very lucky I might read you some of my poetry first."
+            "Howl howl gargle howl gargle howl howl howl gargle howl gargle howl howl gargle gargle howl gargle gargle gargle howl slurrp uuuurgh should have a good time. Message repeats. This is your captain speaking, so stop whatever you’re doing and pay attention. First of all I see from our instruments that we have a couple of hitchhikers aboard. Hello, wherever you are. I just want to make it totally clear that you are not at all welcome. I worked hard to get where I am today, and I didn’t become captain of a Vogon constructor ship simply so I could turn it into a taxi service for a load of degenerate freeloaders. I have sent out a search party, and as soon as they find you I will put you off the ship. If you’re very lucky I might read you some of my poetry first."
           ],
           "word_count": 147,
           "chapter_index": 6,
@@ -1372,7 +1372,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "V ogon poetry is of course the third worst in the Universe. The second worst is that of the Azgoths of Kria. During a recitation by their Poet Master Grunthos the Flatulent of his poem “Ode to a Small Lump of Green Putty I Found in My Armpit One Midsummer Morning” four of his audience died of internal hemorrhaging, and the President of the Mid-Galactic Arts Nobbling Council survived by gnawing one of his own legs off. Grunthos is reported to have been “disappointed” by the poem’s reception, and was about to embark on a reading of his twelve-book epic entitled My Favorite Bathtime Gurgles when his own major intestine, in a desperate attempt to save life and civilization, leaped straight up through his neck and throttled his brain."
+            "Vogon poetry is of course the third worst in the Universe. The second worst is that of the Azgoths of Kria. During a recitation by their Poet Master Grunthos the Flatulent of his poem “Ode to a Small Lump of Green Putty I Found in My Armpit One Midsummer Morning” four of his audience died of internal hemorrhaging, and the President of the Mid-Galactic Arts Nobbling Council survived by gnawing one of his own legs off. Grunthos is reported to have been “disappointed” by the poem’s reception, and was about to embark on a reading of his twelve-book epic entitled My Favorite Bathtime Gurgles when his own major intestine, in a desperate attempt to save life and civilization, leaped straight up through his neck and throttled his brain."
           ],
           "word_count": 129,
           "chapter_index": 7,
@@ -1649,7 +1649,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "T he Hitchhiker’s Guide to the Galaxy is a wholly remarkable book. It has been compiled and recompiled many times over many years and under many different editorships. It contains contributions from countless numbers of travelers and researchers.",
+            "The Hitchhiker’s Guide to the Galaxy is a wholly remarkable book. It has been compiled and recompiled many times over many years and under many different editorships. It contains contributions from countless numbers of travelers and researchers.",
             "The introduction begins like this:",
             "“Space,” it says, “is big. Really big. You just won’t believe how vastly hugely mind-bogglingly big it is. I mean, you may think it’s a long way down the road to the chemist, but that’s just peanuts to space. Listen …” and so on."
           ],
@@ -1862,7 +1862,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "T he Infinite Improbability Drive is a wonderful new method of crossing vast interstellar distances in a mere nothingth of a second, without all that tedious mucking about in hyperspace.",
+            "The Infinite Improbability Drive is a wonderful new method of crossing vast interstellar distances in a mere nothingth of a second, without all that tedious mucking about in hyperspace.",
             "It was discovered by a lucky chance, and then developed into a governable form of propulsion by the Galactic Government’s research team on Damogran.",
             "This, briefly, is the story of its discovery.",
             "The principle of generating small amounts of finite improbability by simply hooking the logic circuits of a Bambleweeny 57 Sub-Meson Brain to an atomic vector plotter suspended in a strong Brownian Motion producer (say a nice hot cup of tea) were of course well understood—and such generators were often used to break the ice at parties by making all the molecules in the hostess’s undergarments leap simultaneously one foot to the left, in accordance with the Theory of Indeterminacy."
@@ -1895,7 +1895,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "T he improbability-proof control cabin of the Heart of Gold looked like a perfectly conventional spaceship except that it was perfectly clean because it was so new. Some of the control seats hadn’t had the plastic wrapping taken off yet. The cabin was mostly white, oblong, and about the size of a smallish restaurant. In fact it wasn’t perfectly oblong: the two long walls were raked round in a slight parallel curve, and all the angles and corners of the cabin were contoured in excitingly chunky shapes. The truth of the matter is that it would have been a great deal simpler and more practical to build the cabin as an ordinary three-dimensional oblong room, but then the designers would have got miserable. As it was the cabin looked excitingly purposeful, with large video screens ranged over the control and guidance system panels on the concave wall, and long banks of computers set into the convex wall. In one corner a robot sat humped, its gleaming brushed steel head hanging loosely between its gleaming brushed steel knees."
+            "The improbability-proof control cabin of the Heart of Gold looked like a perfectly conventional spaceship except that it was perfectly clean because it was so new. Some of the control seats hadn’t had the plastic wrapping taken off yet. The cabin was mostly white, oblong, and about the size of a smallish restaurant. In fact it wasn’t perfectly oblong: the two long walls were raked round in a slight parallel curve, and all the angles and corners of the cabin were contoured in excitingly chunky shapes. The truth of the matter is that it would have been a great deal simpler and more practical to build the cabin as an ordinary three-dimensional oblong room, but then the designers would have got miserable. As it was the cabin looked excitingly purposeful, with large video screens ranged over the control and guidance system panels on the concave wall, and long banks of computers set into the convex wall. In one corner a robot sat humped, its gleaming brushed steel head hanging loosely between its gleaming brushed steel knees."
           ],
           "word_count": 177,
           "chapter_index": 11,
@@ -2263,7 +2263,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "M arvin trudged on down the corridor, still moaning. “And then of course I’ve got this terrible pain in all the diodes down my left-hand side …”",
+            "Marvin trudged on down the corridor, still moaning. “And then of course I’ve got this terrible pain in all the diodes down my left-hand side …”",
             "“No?” said Arthur grimly as he walked along beside him. “Really?”",
             "“Oh yes,” said Marvin, “I mean I’ve asked for them to be replaced but no one ever listens.”",
             "“I can imagine.”",
@@ -2412,7 +2412,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "T he Heart of Gold fled on silently through the night of space, now on conventional photon drive. Its crew of four were ill at ease knowing that they had been brought together not of their own volition or by simple coincidence, but by some curious perversion of physics—as if relationships between people were susceptible to the same laws that governed the relationships between atoms and molecules.",
+            "The Heart of Gold fled on silently through the night of space, now on conventional photon drive. Its crew of four were ill at ease knowing that they had been brought together not of their own volition or by simple coincidence, but by some curious perversion of physics—as if relationships between people were susceptible to the same laws that governed the relationships between atoms and molecules.",
             "As the ship’s artificial night closed in they were each grateful to retire to separate cabins and try to rationalize their thoughts."
           ],
           "word_count": 89,
@@ -2531,7 +2531,7 @@
           "paragraphs": [
             "(Excerpt from",
             ", page 634784, section 5a. Entry: Magrathea )",
-            "F ar back in the mists of ancient time, in the great and glorious days of the former Galactic Empire, life was wild, rich and largely tax free.",
+            "Far back in the mists of ancient time, in the great and glorious days of the former Galactic Empire, life was wild, rich and largely tax free.",
             "Mighty starships plied their way between exotic suns, seeking adventure and reward among the furthest reaches of Galactic space. In those days spirits were brave, the stakes were high, men were real men, women were real women and small furry creatures from Alpha Centauri were real small furry creatures from Alpha Centauri. And all dared to brave unknown terrors, to do mighty deeds, to boldly split infinitives that no man had split before—and thus was the Empire forged."
           ],
           "word_count": 116,
@@ -2571,7 +2571,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "A rthur awoke to the sound of argument and went to the bridge. Ford was waving his arms about.",
+            "Arthur awoke to the sound of argument and went to the bridge. Ford was waving his arms about.",
             "“You’re crazy, Zaphod,” he was saying, “Magrathea is a myth, a fairy story, it’s what parents tell their kids about at night if they want them to grow up to become economists, it’s …”",
             "“And that’s what we are currently in orbit about,” insisted Zaphod.",
             "“Look, I can’t help what you may personally be in orbit around,” said Ford, “but this ship …”",
@@ -2694,7 +2694,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "A fter a fairly shaky start to the day, Arthur’s mind was beginning to reassemble itself from the shell-shocked fragments the previous day had left him with. He had found a Nutri-Matic machine which had provided him with a plastic cup filled with a liquid that was almost, but not quite, entirely unlike tea. The way it functioned was very interesting. When the Drink button was pressed it made an instant but highly detailed examination of the subject’s taste buds, a spectroscopic analysis of the subject’s metabolism and then sent tiny experimental signals down the neural pathways to the taste centers of the subject’s brain to see what was likely to go down well. However, no one knew quite why it did this because it invariably delivered a cupful of liquid that was almost, but not quite, entirely unlike tea. The Nutri-Matic was designed and manufactured by the Sirius Cybernetics Corporation whose complaints department now covers all the major landmasses of the first three planets in the Sirius Tau Star system."
+            "After a fairly shaky start to the day, Arthur’s mind was beginning to reassemble itself from the shell-shocked fragments the previous day had left him with. He had found a Nutri-Matic machine which had provided him with a plastic cup filled with a liquid that was almost, but not quite, entirely unlike tea. The way it functioned was very interesting. When the Drink button was pressed it made an instant but highly detailed examination of the subject’s taste buds, a spectroscopic analysis of the subject’s metabolism and then sent tiny experimental signals down the neural pathways to the taste centers of the subject’s brain to see what was likely to go down well. However, no one knew quite why it did this because it invariably delivered a cupful of liquid that was almost, but not quite, entirely unlike tea. The Nutri-Matic was designed and manufactured by the Sirius Cybernetics Corporation whose complaints department now covers all the major landmasses of the first three planets in the Sirius Tau Star system."
           ],
           "word_count": 171,
           "chapter_index": 17,
@@ -2894,7 +2894,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "A nd the next thing that happened after that was that the Heart of Gold continued on its way perfectly normally with a rather fetchingly redesigned interior. It was somewhat larger, and done out in delicate pastel shades of green and blue. In the center a spiral staircase, leading nowhere in particular, stood in a spray of ferns and yellow flowers and next to it a stone sundial pedestal housed the main computer terminal. Cunningly deployed lighting and mirrors created the illusion of standing in a conservatory overlooking a wide stretch of exquisitely manicured garden. Around the periphery of the conservatory area stood marble-topped tables on intricately beautiful wrought-iron legs. As you gazed into the polished surface of the marble the vague forms of instruments became visible, and as you touched them the instruments materialized instantly under your hands. Looked at from the correct angles the mirrors appeared to reflect all the required data read-outs, though it was far from clear where they were reflected from. It was in fact sensationally beautiful."
+            "And the next thing that happened after that was that the Heart of Gold continued on its way perfectly normally with a rather fetchingly redesigned interior. It was somewhat larger, and done out in delicate pastel shades of green and blue. In the center a spiral staircase, leading nowhere in particular, stood in a spray of ferns and yellow flowers and next to it a stone sundial pedestal housed the main computer terminal. Cunningly deployed lighting and mirrors created the illusion of standing in a conservatory overlooking a wide stretch of exquisitely manicured garden. Around the periphery of the conservatory area stood marble-topped tables on intricately beautiful wrought-iron legs. As you gazed into the polished surface of the marble the vague forms of instruments became visible, and as you touched them the instruments materialized instantly under your hands. Looked at from the correct angles the mirrors appeared to reflect all the required data read-outs, though it was far from clear where they were reflected from. It was in fact sensationally beautiful."
           ],
           "word_count": 172,
           "chapter_index": 18,
@@ -2980,7 +2980,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "A re we taking this robot with us?” said Ford, looking with distaste at Marvin, who was standing in an awkward hunched posture in the corner under a small palm tree.",
+            "Are we taking this robot with us?” said Ford, looking with distaste at Marvin, who was standing in an awkward hunched posture in the corner under a small palm tree.",
             "Zaphod glanced away from the mirror screens which presented a panoramic view of the blighted landscape on which the Heart of Gold had now landed.",
             "“Oh, the Paranoid Android,” he said. “Yeah, we’ll take him.”",
             "“But what are you supposed to do with a manically depressed robot?”",
@@ -3053,7 +3053,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "F ive figures wandered slowly over the blighted land. Bits of it were dullish gray, bits of it dullish brown, the rest of it rather less interesting to look at. It was like a dried-out marsh, now barren of all vegetation and covered with a layer of dust about an inch thick. It was very cold.",
+            "Five figures wandered slowly over the blighted land. Bits of it were dullish gray, bits of it dullish brown, the rest of it rather less interesting to look at. It was like a dried-out marsh, now barren of all vegetation and covered with a layer of dust about an inch thick. It was very cold.",
             "Zaphod was clearly rather depressed about it. He stalked off by himself and was soon lost to sight behind a slight rise in the ground.",
             "The wind stung Arthur’s eyes and ears, and the stale thin air clasped his throat. However, the thing that was stung most was his mind.",
             "“It’s fantastic …” he said, and his own voice rattled his ears. Sound carried badly in this thin atmosphere."
@@ -3256,7 +3256,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "O n the surface of Magrathea Arthur wandered about moodily.",
+            "On the surface of Magrathea Arthur wandered about moodily.",
             "Ford had thoughtfully left him his copy of",
             "to while away the time with. He pushed a few buttons at random.",
             "is a very unevenly edited book and contains many passages that simply seemed to its editors like a good idea at the time.",
@@ -3339,7 +3339,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "H e was standing with his back to Arthur watching the very last glimmers of light sink into blackness behind the horizon. He was tallish, elderly and dressed in a single long gray robe. When he turned, his face was thin and distinguished, careworn but not unkind, the sort of face you would happily bank with. But he didn’t turn yet, not even to react to Arthur’s yelp of surprise.",
+            "He was standing with his back to Arthur watching the very last glimmers of light sink into blackness behind the horizon. He was tallish, elderly and dressed in a single long gray robe. When he turned, his face was thin and distinguished, careworn but not unkind, the sort of face you would happily bank with. But he didn’t turn yet, not even to react to Arthur’s yelp of surprise.",
             "Eventually the last rays of the sun vanished completely, and he turned. His face was still illuminated from somewhere, and when Arthur looked for the source of the light he saw that a few yards away stood a small craft of some kind—a small Hovercraft, Arthur guessed. It shed a dim pool of light around it.",
             "The man looked at Arthur, sadly it seemed."
           ],
@@ -3464,7 +3464,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "I t is an important and popular fact that things are not always what they seem. For instance, on the planet Earth, man had always assumed that he was more intelligent than dolphins because he had achieved so much—the wheel, New York, wars and so on—while all the dolphins had ever done was muck about in the water having a good time. But conversely, the dolphins had always believed that they were far more intelligent than man—for precisely the same reasons.",
+            "It is an important and popular fact that things are not always what they seem. For instance, on the planet Earth, man had always assumed that he was more intelligent than dolphins because he had achieved so much—the wheel, New York, wars and so on—while all the dolphins had ever done was muck about in the water having a good time. But conversely, the dolphins had always believed that they were far more intelligent than man—for precisely the same reasons.",
             "Curiously enough, the dolphins had long known of the impending destruction of the planet Earth and had made many attempts to alert mankind to the danger; but most of their communications were misinterpreted as amusing attempts to punch footballs or whistle for tidbits, so they eventually gave up and left the Earth by their own means shortly before the Vogons arrived."
           ],
           "word_count": 142,
@@ -3491,7 +3491,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "S ilently the aircar coasted through the cold darkness, a single soft glow of light that was utterly alone in the deep Magrathean night. It sped swiftly. Arthur’s companion seemed sunk in his own thoughts, and when Arthur tried on a couple of occasions to engage him in conversation again he would simply reply by asking if he was comfortable enough, and then left it at that.",
+            "Silently the aircar coasted through the cold darkness, a single soft glow of light that was utterly alone in the deep Magrathean night. It sped swiftly. Arthur’s companion seemed sunk in his own thoughts, and when Arthur tried on a couple of occasions to engage him in conversation again he would simply reply by asking if he was comfortable enough, and then left it at that.",
             "Arthur tried to gauge the speed at which they were traveling, but the blackness outside was absolute and he was denied any reference points. The sense of motion was so soft and slight he could almost believe they were hardly moving at all."
           ],
           "word_count": 110,
@@ -3658,7 +3658,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "T here are of course many problems connected with life, of which some of the most popular are Why are people born? Why do they die? Why do they want to spend so much of the intervening time wearing digital watches?",
+            "There are of course many problems connected with life, of which some of the most popular are Why are people born? Why do they die? Why do they want to spend so much of the intervening time wearing digital watches?",
             "Many many millions of years ago a race of hyperintelligent pandimensional beings (whose physical manifestation in their own pandimensional universe is not dissimilar to our own) got so fed up with the constant bickering about the meaning of life which used to interrupt their favorite pastime of Brockian Ultra Cricket (a curious game which involved suddenly hitting people for no readily apparent reason and then running away) that they decided to sit down and solve their problems once and for all."
           ],
           "word_count": 122,
@@ -3846,7 +3846,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "Y es, very salutary,” said Arthur, after Slartibartfast had related the salient points of this story to him, “but I don’t understand what all this has got to do with the Earth and mice and things.”",
+            "Yes, very salutary,” said Arthur, after Slartibartfast had related the salient points of this story to him, “but I don’t understand what all this has got to do with the Earth and mice and things.”",
             "“That is but the first half of the story, Earthman,” said the old man. “If you would care to discover what happened seven and a half million years later, on the great day of the Answer, allow me to invite you to my study where you can experience the events yourself on our Sens-O-Tape records. That is, unless you would care to take a quick stroll on the surface of New Earth. It’s only half completed, I’m afraid—we haven’t even finished burying the artificial dinosaur skeletons in the crust yet, then we have the Tertiary and Quaternary Periods of the Cenozoic Era to lay down, and …”",
             "“No, thank you,” said Arthur, “it wouldn’t be quite the same.”",
             "“No,” said Slartibartfast, “it won’t be,” and he turned the aircar round and headed back toward the mind-numbing wall."
@@ -3864,7 +3864,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "S lartibartfast’s study was a total mess, like the results of an explosion in a public library. The old man frowned as they stepped in.",
+            "Slartibartfast’s study was a total mess, like the results of an explosion in a public library. The old man frowned as they stepped in.",
             "“Terribly unfortunate,” he said, “a diode blew in one of the life-support computers. When we tried to revive our cleaning staff we discovered they’d been dead for nearly thirty thousand years. Who’s going to clear away the bodies, that’s what I want to know. Look, why don’t you sit yourself down over there and let me plug you in?”",
             "He gestured Arthur toward a chair which looked as if it had been made out of the rib cage of a stegosaurus."
           ],
@@ -3988,7 +3988,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "I t was a long long time before anyone spoke.",
+            "It was a long long time before anyone spoke.",
             "Out of the corner of his eye Phouchg could see the sea of tense expectant faces down in the square outside.",
             "“We’re going to get lynched, aren’t we?” he whispered.",
             "“It was a tough assignment,” said Deep Thought mildly.",
@@ -4052,7 +4052,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "Z aphod! Wake up!”",
+            "Zaphod! Wake up!”",
             "“Mmmmmwwwwwerrrr?”",
             "“Hey, come on, wake up.”",
             "“Just let me stick to what I’m good at, yeah?” muttered Zaphod, and rolled away from the voice back to sleep.",
@@ -4210,7 +4210,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "S o there you have it,” said Slartibartfast, making a feeble and perfunctory attempt to clear away some of the appalling mess of his study. He picked up a piece of paper from the top of a pile, but then couldn’t think of anywhere else to put it, so he put it back on top of the original pile which promptly fell over. “Deep Thought designed the Earth, we built it and you lived on it.”"
+            "So there you have it,” said Slartibartfast, making a feeble and perfunctory attempt to clear away some of the appalling mess of his study. He picked up a piece of paper from the top of a pile, but then couldn’t think of anywhere else to put it, so he put it back on top of the original pile which promptly fell over. “Deep Thought designed the Earth, we built it and you lived on it.”"
           ],
           "word_count": 76,
           "chapter_index": 30,
@@ -4272,7 +4272,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "I t is of course well known that careless talk costs lives, but the full scale of the problem is not always appreciated.",
+            "It is of course well known that careless talk costs lives, but the full scale of the problem is not always appreciated.",
             "For instance, at the very moment that Arthur said, “I seem to be having tremendous difficulty with my life-style,” a freak wormhole opened up in the fabric of the space-time continuum and carried his words far far back in time across almost infinite reaches of space to a distant Galaxy where strange and warlike beings were poised on the brink of frightful interstellar battle.",
             "The two opposing leaders were meeting for the last time."
           ],
@@ -4496,7 +4496,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "E mergency! Emergency!” blared the klaxons throughout Magrathea. “Hostile ship has landed on planet. Armed intruders in section 8A. Defense stations, defense stations!”",
+            "Emergency! Emergency!” blared the klaxons throughout Magrathea. “Hostile ship has landed on planet. Armed intruders in section 8A. Defense stations, defense stations!”",
             "The two mice sniffed irritably round the fragments of their glass transports where they lay shattered on the floor. “Damnation,” muttered Frankie mouse, “all that fuss over two pounds of Earthling brain.” He scuttled round and about, his pink eyes flashing, his fine white coat bristling with static. “The only thing we can do now,” said Benjy, crouching and stroking his whiskers in thought, “is to try and fake a question, invent one that will sound plausible.”",
             "“Difficult,” said Frankie. He thought. “How about What’s yellow and dangerous?”",
             "Benjy considered this for a moment.",
@@ -4629,7 +4629,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "B ut the end never came, at least not then.",
+            "But the end never came, at least not then.",
             "Quite suddenly the barrage stopped, and the sudden silence afterward was punctuated by a couple of strangled gurgles and thuds.",
             "The four stared at each other.",
             "“What happened?” said Arthur.",
@@ -4700,7 +4700,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "T he aircar rocketed them at speeds in excess of R17 through the steel tunnels that led out on to the appalling surface of the planet which was now in the grip of yet another drear morning twilight. Ghastly gray light congealed on the land.",
+            "The aircar rocketed them at speeds in excess of R17 through the steel tunnels that led out on to the appalling surface of the planet which was now in the grip of yet another drear morning twilight. Ghastly gray light congealed on the land.",
             "R is a velocity measure, defined as a reasonable speed of travel that is consistent with health, mental well-being and not being more than, say, five minutes late. It is therefore clearly an almost infinitely variable figure according to circumstances, since the first two factors vary not only with speed taken as an absolute, but also with awareness of the third factor. Unless handled with tranquillity this equation can result in considerable stress, ulcers and even death.",
             "R17 is not a fixed velocity, but it is clearly far too fast."
           ],
@@ -4770,7 +4770,7 @@
           "page_in_chapter": 1,
           "opener": true,
           "paragraphs": [
-            "T hat night, as the Heart of Gold was busy putting a few light-years between itself and the Horsehead Nebula, Zaphod lounged under the small palm tree on the bridge trying to bang his brain into shape with massive Pan Galactic Gargle Blasters; Ford and Trillian sat in a corner discussing life and matters arising from it; and Arthur took to his bed to flip through Ford’s copy of The Hitchhiker’s Guide to the Galaxy. Since he was going to have to live in the place, he reasoned, he’d better start finding out something about it.",
+            "That night, as the Heart of Gold was busy putting a few light-years between itself and the Horsehead Nebula, Zaphod lounged under the small palm tree on the bridge trying to bang his brain into shape with massive Pan Galactic Gargle Blasters; Ford and Trillian sat in a corner discussing life and matters arising from it; and Arthur took to his bed to flip through Ford’s copy of The Hitchhiker’s Guide to the Galaxy. Since he was going to have to live in the place, he reasoned, he’d better start finding out something about it.",
             "He came across this entry.",
             "It said: “The History of every major Galactic Civilization tends to pass through three distinct and recognizable phases, those of Survival, Inquiry and Sophistication, otherwise known as the How, Why and Where phases."
           ],

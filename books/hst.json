@@ -2,7 +2,7 @@
   "id": "hst",
   "title": "Fear and Loathing in Las Vegas",
   "author": "Hunter S. Thompson",
-  "pagination_version": "CLEAN-CUT-PAGINATED-v2",
+  "pagination_version": "CLEAN-CUT-PAGINATED-v3",
   "geometry": {
     "chapter_opener_target_words": 145,
     "follower_target_words": 195,
