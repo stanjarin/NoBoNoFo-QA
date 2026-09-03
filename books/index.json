@@ -5,7 +5,9 @@
     "author": "David Dann",
     "file": "books/bloomfield.json",
     "chapters": 26,
-    "pages": 1807
+    "pages": 1807,
+    "chapter_count": 26,
+    "page_count": 1482
   },
   {
     "id": "farewell",
@@ -13,7 +15,9 @@
     "author": "Ernest Hemingway",
     "file": "books/farewell.json",
     "chapters": 41,
-    "pages": 522
+    "pages": 522,
+    "chapter_count": 41,
+    "page_count": 464
   },
   {
     "id": "h2g2",
@@ -21,7 +25,9 @@
     "author": "Douglas Adams",
     "file": "books/h2g2.json",
     "chapters": 35,
-    "pages": 281
+    "pages": 281,
+    "chapter_count": 35,
+    "page_count": 254
   },
   {
     "id": "hst",
@@ -29,7 +35,9 @@
     "author": "Hunter S. Thompson",
     "file": "books/hst.json",
     "chapters": 12,
-    "pages": 143
+    "pages": 143,
+    "chapter_count": 12,
+    "page_count": 125
   },
   {
     "id": "huck",
@@ -37,7 +45,9 @@
     "author": "Mark Twain",
     "file": "books/huck.json",
     "chapters": 43,
-    "pages": 683
+    "pages": 683,
+    "chapter_count": 43,
+    "page_count": 586
   },
   {
     "id": "jeeves",
@@ -45,7 +55,9 @@
     "author": "P. G. Wodehouse",
     "file": "books/jeeves.json",
     "chapters": 23,
-    "pages": 451
+    "pages": 451,
+    "chapter_count": 23,
+    "page_count": 379
   },
   {
     "id": "jobs",
@@ -53,7 +65,9 @@
     "author": "Walter Isaacson",
     "file": "books/jobs.json",
     "chapters": 41,
-    "pages": 1432
+    "pages": 1432,
+    "chapter_count": 41,
+    "page_count": 1046
   },
   {
     "id": "keef",
@@ -61,7 +75,9 @@
     "author": "Keith Richards",
     "file": "books/keef.json",
     "chapters": 13,
-    "pages": 1245
+    "pages": 1245,
+    "chapter_count": 13,
+    "page_count": 988
   },
   {
     "id": "sotweed",
@@ -69,6 +85,8 @@
     "author": "John Barth",
     "file": "books/sotweed.json",
     "chapters": 66,
-    "pages": 2075
+    "pages": 2075,
+    "chapter_count": 66,
+    "page_count": 1833
   }
 ]
