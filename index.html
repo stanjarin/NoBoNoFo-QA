@@ -351,10 +351,16 @@ async function openBook(id){
   const loading=loadBook(id);
   const [_,book]=await Promise.all([hold,loading]);
 
-  splash.classList.add("coverExit");
-  await new Promise(resolve=>setTimeout(resolve,300));
   state.book=book; state.ci=0; state.pi=0; state.screen="contents";
   render();
+  // Put the already-loaded cover back above Contents, then slide it away.
+  // render() replaced #app contents, so re-append the same splash node synchronously;
+  // the browser will paint Contents underneath, not Library.
+  app.appendChild(splash);
+  void splash.offsetWidth;
+  splash.classList.add("coverExit");
+  await new Promise(resolve=>setTimeout(resolve,300));
+  splash.remove();
 }
 function openChapter(i){state.ci=i;state.pi=0;state.screen="reader";render()}
 function pageMove(d){
@@ -512,7 +518,7 @@ function render(){
   }
   app.innerHTML=`<div class="top"><button id="contents">CONTENTS</button><div class="title">${esc(state.book.title)} · ${esc(ch.title)}</div><button id="edit">EDIT</button></div>
     <div class="reader"><div class="page">${openingHTML}${bodyParas.map(x=>`<p>${esc(x)}</p>`).join("")}</div>
-    <div class="hit left" id="left"></div><div class="hit right"></div>
+    <div class="hit left" id="left"></div><div class="hit right" id="right"></div>
     <div class="pageno">${absolutePage()} / ${totalBookPages()}</div></div>`;
   $("#contents").onclick=()=>{state.screen="contents";render()};
   $("#left").onclick=()=>pageMove(-1);$("#right").onclick=()=>pageMove(1);
