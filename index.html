@@ -59,7 +59,7 @@ html,body{width:100%;max-width:100%;overflow:hidden} #app{width:100%;max-width:1
 
 .buildId{
   position:absolute;
-  right:8px;
+  right:28px;
   top:4px;
   bottom:auto;
   z-index:30;
@@ -231,8 +231,8 @@ html,body,#app{width:100%;max-width:100%;overflow-x:hidden}
   margin-bottom:11px;
   font:600 11px/1.28 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
   letter-spacing:.055em;
-  color:#000;
-  text-transform:none;
+  color:#777;
+  text-transform:uppercase;
 }
 .jobsOpen + p{ text-indent:0 !important; }
 
@@ -352,10 +352,16 @@ async function openBook(id){
   const loading=loadBook(id);
   const [_,book]=await Promise.all([hold,loading]);
 
-  splash.classList.add("coverExit");
-  await new Promise(resolve=>setTimeout(resolve,300));
   state.book=book; state.ci=0; state.pi=0; state.screen="contents";
   render();
+  // Put the already-loaded cover back above Contents, then slide it away.
+  // render() replaced #app contents, so re-append the same splash node synchronously;
+  // the browser will paint Contents underneath, not Library.
+  app.appendChild(splash);
+  void splash.offsetWidth;
+  splash.classList.add("coverExit");
+  await new Promise(resolve=>setTimeout(resolve,300));
+  splash.remove();
 }
 function openChapter(i){state.ci=i;state.pi=0;state.screen="reader";render()}
 function pageMove(d){
@@ -425,6 +431,12 @@ function openH2G2Search(){
   $("#sx").onclick=()=>ov.remove();
 }
 
+function jobsMixedCase(s){
+  s=String(s||"");
+  if(s!==s.toUpperCase())return s;
+  return s.toLowerCase().replace(/(^|[\s—–-])([a-z])/g,(m,p,c)=>p+c.toUpperCase());
+}
+
 function jobsOpeningHTML(ch,paras){
   const parts=String(ch.title||"").split(/\s+[—–-]\s+/,2);
   const chapNo=parts[0]||"";
@@ -438,8 +450,8 @@ function jobsOpeningHTML(ch,paras){
   const heads=paras.slice(0,n);
   const body=paras.slice(n);
   const headHTML=`<div class="jobsOpen">
-    <div class="jobsChapNo">${esc(chapNo)}</div>
-    <div class="jobsChapTitle">${esc(chapTitle)}</div>
+    <div class="jobsChapNo">${esc(jobsMixedCase(chapNo))}</div>
+    <div class="jobsChapTitle">${esc(jobsMixedCase(chapTitle))}</div>
     ${heads.map((x,i)=>`<div class="jobsSub jobsSub${Math.min(i+1,5)}">${esc(x)}</div>`).join("")}
   </div>`;
   return {headHTML,body};
@@ -513,7 +525,7 @@ function render(){
   }
   app.innerHTML=`<div class="top"><button id="contents">CONTENTS</button><div class="title">${esc(state.book.title)} · ${esc(ch.title)}</div><button id="edit">EDIT</button></div>
     <div class="reader"><div class="page">${openingHTML}${bodyParas.map(x=>`<p>${esc(x)}</p>`).join("")}</div>
-    <div class="hit left" id="left"></div><div class="hit right"></div>
+    <div class="hit left" id="left"></div><div class="hit right" id="right"></div>
     <div class="pageno">${absolutePage()} / ${totalBookPages()}</div></div>`;
   $("#contents").onclick=()=>{state.screen="contents";render()};
   $("#left").onclick=()=>pageMove(-1);$("#right").onclick=()=>pageMove(1);
