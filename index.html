@@ -59,8 +59,9 @@ html,body{width:100%;max-width:100%;overflow:hidden} #app{width:100%;max-width:1
 
 .buildId{
   position:absolute;
-  right:28px;
-  bottom:4px;
+  right:8px;
+  top:4px;
+  bottom:auto;
   z-index:30;
   font:500 9px/1 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
   letter-spacing:.15px;
@@ -188,15 +189,15 @@ html,body,#app{width:100%;max-width:100%;overflow-x:hidden}
   margin:0 0 10px;
   font:700 13px/1.15 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
   letter-spacing:.08em;
-  color:#0878d8;
-  text-transform:uppercase;
+  color:#000;
+  text-transform:none;
 }
 .jobsChapTitle{
   margin:0 0 23px;
   font-size:29px;
   line-height:1.06;
   font-weight:700;
-  color:#0878d8;
+  color:#000;
 }
 .jobsSub{
   margin-left:auto;
@@ -230,8 +231,8 @@ html,body,#app{width:100%;max-width:100%;overflow-x:hidden}
   margin-bottom:11px;
   font:600 11px/1.28 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
   letter-spacing:.055em;
-  color:#777;
-  text-transform:uppercase;
+  color:#000;
+  text-transform:none;
 }
 .jobsOpen + p{ text-indent:0 !important; }
 
@@ -351,16 +352,10 @@ async function openBook(id){
   const loading=loadBook(id);
   const [_,book]=await Promise.all([hold,loading]);
 
-  state.book=book; state.ci=0; state.pi=0; state.screen="contents";
-  render();
-  // Put the already-loaded cover back above Contents, then slide it away.
-  // render() replaced #app contents, so re-append the same splash node synchronously;
-  // the browser will paint Contents underneath, not Library.
-  app.appendChild(splash);
-  void splash.offsetWidth;
   splash.classList.add("coverExit");
   await new Promise(resolve=>setTimeout(resolve,300));
-  splash.remove();
+  state.book=book; state.ci=0; state.pi=0; state.screen="contents";
+  render();
 }
 function openChapter(i){state.ci=i;state.pi=0;state.screen="reader";render()}
 function pageMove(d){
@@ -464,7 +459,7 @@ function render(){
         ${LIB_ORDER.map((id,i)=>`<button class="libHit" data-id="${id}" style="left:${zones[i][0]}%;top:${zones[i][1]}%;width:${zones[i][2]}%;height:${zones[i][3]}%" aria-label="${id}"></button>`).join("")}
       </div></div>
       <img class="libraryBase" src="assets/LIBRARY_BASE.png" alt="">
-<div class="buildId">QA v5</div>
+<div class="buildId">QA v6</div>
 <button class="adminHot" id="adminHot" type="button" aria-label="More"></button>
     </div></div>`;
     document.querySelectorAll(".libHit").forEach(b=>b.onclick=()=>openBook(b.dataset.id));
@@ -518,7 +513,7 @@ function render(){
   }
   app.innerHTML=`<div class="top"><button id="contents">CONTENTS</button><div class="title">${esc(state.book.title)} · ${esc(ch.title)}</div><button id="edit">EDIT</button></div>
     <div class="reader"><div class="page">${openingHTML}${bodyParas.map(x=>`<p>${esc(x)}</p>`).join("")}</div>
-    <div class="hit left" id="left"></div><div class="hit right" id="right"></div>
+    <div class="hit left" id="left"></div><div class="hit right"></div>
     <div class="pageno">${absolutePage()} / ${totalBookPages()}</div></div>`;
   $("#contents").onclick=()=>{state.screen="contents";render()};
   $("#left").onclick=()=>pageMove(-1);$("#right").onclick=()=>pageMove(1);
