@@ -165,6 +165,76 @@ html,body,#app{width:100%;max-width:100%;overflow-x:hidden}
   touch-action:none !important;
 }
 
+
+/* QA v5 — runtime refinement */
+.page p{
+  -webkit-hyphens:auto;
+  hyphens:auto;
+  overflow-wrap:normal;
+}
+.coverSplash{
+  transform:translateX(0);
+  transition:transform .30s ease-in;
+  will-change:transform;
+}
+.coverSplash.coverExit{ transform:translateX(-105%); }
+
+.jobsOpen{
+  text-align:center;
+  margin:0 0 26px;
+  font-family:Georgia,"Times New Roman",serif;
+}
+.jobsChapNo{
+  margin:0 0 10px;
+  font:700 13px/1.15 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  letter-spacing:.08em;
+  color:#0878d8;
+  text-transform:uppercase;
+}
+.jobsChapTitle{
+  margin:0 0 23px;
+  font-size:29px;
+  line-height:1.06;
+  font-weight:700;
+  color:#0878d8;
+}
+.jobsSub{
+  margin-left:auto;
+  margin-right:auto;
+  max-width:94%;
+}
+.jobsSub1{
+  margin-top:0;
+  margin-bottom:16px;
+  font-size:20px;
+  line-height:1.18;
+  font-weight:700;
+}
+.jobsSub2{
+  margin-top:0;
+  margin-bottom:14px;
+  font-size:16px;
+  line-height:1.22;
+  font-weight:500;
+}
+.jobsSub3{
+  margin-top:0;
+  margin-bottom:13px;
+  font-size:14px;
+  line-height:1.24;
+  font-style:italic;
+  font-weight:400;
+}
+.jobsSub4,.jobsSub5{
+  margin-top:0;
+  margin-bottom:11px;
+  font:600 11px/1.28 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  letter-spacing:.055em;
+  color:#777;
+  text-transform:uppercase;
+}
+.jobsOpen + p{ text-indent:0 !important; }
+
 </style>
 </head>
 <body><div id="app"></div>
@@ -281,6 +351,8 @@ async function openBook(id){
   const loading=loadBook(id);
   const [_,book]=await Promise.all([hold,loading]);
 
+  splash.classList.add("coverExit");
+  await new Promise(resolve=>setTimeout(resolve,300));
   state.book=book; state.ci=0; state.pi=0; state.screen="contents";
   render();
 }
@@ -351,6 +423,27 @@ function openH2G2Search(){
   $("#searchForm").addEventListener("submit",e=>{e.preventDefault();submit()});
   $("#sx").onclick=()=>ov.remove();
 }
+
+function jobsOpeningHTML(ch,paras){
+  const parts=String(ch.title||"").split(/\s+[—–-]\s+/,2);
+  const chapNo=parts[0]||"";
+  const chapTitle=parts[1]||"";
+  let n=0;
+  while(n<paras.length){
+    const wc=String(paras[n]).trim().split(/\s+/).filter(Boolean).length;
+    if(wc>18)break;
+    n++;
+  }
+  const heads=paras.slice(0,n);
+  const body=paras.slice(n);
+  const headHTML=`<div class="jobsOpen">
+    <div class="jobsChapNo">${esc(chapNo)}</div>
+    <div class="jobsChapTitle">${esc(chapTitle)}</div>
+    ${heads.map((x,i)=>`<div class="jobsSub jobsSub${Math.min(i+1,5)}">${esc(x)}</div>`).join("")}
+  </div>`;
+  return {headHTML,body};
+}
+
 function render(){
   const app=$("#app");
   if(state.screen==="library"){
@@ -365,7 +458,7 @@ function render(){
         ${LIB_ORDER.map((id,i)=>`<button class="libHit" data-id="${id}" style="left:${zones[i][0]}%;top:${zones[i][1]}%;width:${zones[i][2]}%;height:${zones[i][3]}%" aria-label="${id}"></button>`).join("")}
       </div></div>
       <img class="libraryBase" src="assets/LIBRARY_BASE.png" alt="">
-<div class="buildId">QA v4</div>
+<div class="buildId">QA v5</div>
 <button class="adminHot" id="adminHot" type="button" aria-label="More"></button>
     </div></div>`;
     document.querySelectorAll(".libHit").forEach(b=>b.onclick=()=>openBook(b.dataset.id));
@@ -409,9 +502,17 @@ function render(){
     return;
   }
   const p=currentPage(),ch=state.book.chapters[state.ci];
+  const shown=visibleParagraphs(p);
+  let openingHTML=p.opener?`<h1>${esc(ch.title)}</h1>`:"";
+  let bodyParas=shown;
+  if(p.opener && state.book.id==="jobs"){
+    const j=jobsOpeningHTML(ch,shown);
+    openingHTML=j.headHTML;
+    bodyParas=j.body;
+  }
   app.innerHTML=`<div class="top"><button id="contents">CONTENTS</button><div class="title">${esc(state.book.title)} · ${esc(ch.title)}</div><button id="edit">EDIT</button></div>
-    <div class="reader"><div class="page">${p.opener?`<h1>${esc(ch.title)}</h1>`:""}${visibleParagraphs(p).map(x=>`<p>${esc(x)}</p>`).join("")}</div>
-    <div class="hit left" id="left"></div><div class="hit right" id="right"></div>
+    <div class="reader"><div class="page">${openingHTML}${bodyParas.map(x=>`<p>${esc(x)}</p>`).join("")}</div>
+    <div class="hit left" id="left"></div><div class="hit right"></div>
     <div class="pageno">${absolutePage()} / ${totalBookPages()}</div></div>`;
   $("#contents").onclick=()=>{state.screen="contents";render()};
   $("#left").onclick=()=>pageMove(-1);$("#right").onclick=()=>pageMove(1);
