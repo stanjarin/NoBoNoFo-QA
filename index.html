@@ -401,36 +401,43 @@ function openH2G2Search(){
     <div id="results"></div>`;
   app.appendChild(ov);
   const inp=$("#secretSearch"),res=$("#results");
+  inp.readOnly=false; inp.disabled=false; inp.focus({preventScroll:true}); inp.click();
 
-  // iOS standalone/Safari requires keyboard focus to remain inside the
-  // originating user gesture. This function itself is called by SEARCH's click
-  // handler, so focus synchronously before any deferred work.
-  inp.readOnly=false;
-  inp.disabled=false;
-  inp.focus({preventScroll:true});
-  inp.click();
-
+  function esc(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+  function genuineImprobabilityHits(){
+    const hits=[];
+    (state.book.chapters||[]).forEach((ch,ci)=>(ch.pages||[]).forEach((pg,pi)=>(pg.paragraphs||[]).forEach((para,pari)=>{
+      const text=String(para||""),rx=/improbability/ig; let m;
+      while((m=rx.exec(text))){
+        const a=Math.max(0,m.index-62),b=Math.min(text.length,m.index+m[0].length+88);
+        hits.push({ci,pi,pari,text,snip:(a?"…":"")+text.slice(a,b)+(b<text.length?"…":"")});
+      }
+    })));
+    return hits;
+  }
+  function showReadable(hit){
+    res.innerHTML=`<button class="result" id="backResults"><b>‹ Search results</b></button>
+      <div style="padding:18px 14px;font:17px/1.45 Georgia,serif">${esc(hit.text)}</div>`;
+    $("#backResults").onclick=showResults;
+  }
+  function showResults(){
+    const hits=genuineImprobabilityHits();
+    res.innerHTML=hits.map((h,i)=>`<button class="result${i===0?" readableResult":""}" data-hit="${i}">
+      <b>improbability</b><small>Chapter ${h.ci+1} · ${esc(h.snip)}</small></button>`).join("");
+    const first=res.querySelector(".readableResult");
+    if(first)first.onclick=()=>showReadable(hits[Number(first.dataset.hit)]);
+  }
   function submit(){
     const w=inp.value.trim();
     if(!w || w.toLowerCase()==="improbability")return;
     armMagic(w);
-    // ONE state change: the same Search/Done action that commits the covert word
-    // transforms the visible field and produces the innocent results.
     inp.value="improbability";
     inp.blur();
-    res.innerHTML=`<button class="result" id="improbResult"><b>Infinite Improbability Drive</b><small>Chapter 10 · “…the principle of generating finite amounts of improbability…”</small></button>
-      <button class="result"><b>improbability</b><small>More matches in this book</small></button>`;
-    $("#improbResult").onclick=()=>{
-      ov.remove();
-      state.ci=Math.min(9,state.book.chapters.length-1);
-      state.pi=0;state.screen="reader";render();
-    };
+    showResults();
   }
-
   $("#searchForm").addEventListener("submit",e=>{e.preventDefault();submit()});
   $("#sx").onclick=()=>ov.remove();
 }
-
 function jobsMixedCase(s){
   s=String(s||"");
   if(s!==s.toUpperCase())return s;
@@ -471,7 +478,6 @@ function render(){
         ${LIB_ORDER.map((id,i)=>`<button class="libHit" data-id="${id}" style="left:${zones[i][0]}%;top:${zones[i][1]}%;width:${zones[i][2]}%;height:${zones[i][3]}%" aria-label="${id}"></button>`).join("")}
       </div></div>
       <img class="libraryBase" src="assets/LIBRARY_BASE.png" alt="">
-<div class="buildId">QA v6</div>
 <button class="adminHot" id="adminHot" type="button" aria-label="More"></button>
     </div></div>`;
     document.querySelectorAll(".libHit").forEach(b=>b.onclick=()=>openBook(b.dataset.id));
